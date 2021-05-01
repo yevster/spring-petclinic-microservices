@@ -6,7 +6,7 @@
 name: Provision Resources
 
 variables:
-- group: azure-environment-terraform
+- group: azure-environment
 
 parameters:
 - name: location
