@@ -37,15 +37,6 @@ steps:
     backendAzureRmContainerName: '$(REMOTE_BACKEND_CONTAINER_NAME)'
     backendAzureRmKey: '$(REMOTE_BACKEND_STORAGE_KEY)'
 
-- task: Bash@3
-  inputs:
-    targetType: 'inline'
-    failOnStderr: false
-    script: |
-      # Write your commands here
-       echo Checking the terraform version
-       terraform -v            
-
 - task: TerraformTaskV1@0
   inputs:
     provider: 'azurerm'
