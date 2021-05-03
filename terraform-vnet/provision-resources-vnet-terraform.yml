@@ -6,7 +6,7 @@
 name: Provision Resources
 
 variables:
-- group: azure-environment
+- group: azure-environment-terraform
 
 parameters:
 - name: location
@@ -24,31 +24,6 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-
-- task: GoTool@0
-  inputs:
-    version: '1.14.4'
-    goPath: '/gopath'
-    goBin: '/gopath/bin'
-
-
-
-- task: CmdLine@2
-  inputs:
-    script: |
-      echo Write your commands here
-      echo Cloning the Azurerm Provider with vnet support 
-            
-            sudo mkdir -p terraform
-            sudo chmod +rwx terraform
-            cd terraform
-            sudo git clone --single-branch -b spring_cloud_service_vnet_integration https://github.com/njuCZ/terraform-provider-azurerm.git
-            cd  terraform-provider-azurerm
-            sudo chmod +rwx /opt/hostedtoolcache/go/1.14.4/x64/bin/go
-            sudo make build
-            cd ../..
-            sudo cp ~/go/bin/terraform-provider-azurerm .
-
                     
 - task: TerraformTaskV1@0
   inputs:
