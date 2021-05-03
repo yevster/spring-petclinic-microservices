@@ -55,16 +55,10 @@ stages:
   - job: move_to_production
     displayName: Move to Production
     steps:
-    - task: AzureCLI@2
-      name: move_to_production
-      displayName: Staging Deployment
+    - task: AzureSpringCloud@0
       inputs:
         azureSubscription: '$(SERVICE_CONNECTION_NAME)'
-        scriptType: 'bash'
-        scriptLocation: 'inlineScript'
-        inlineScript: |
-          az extension add -n spring-cloud -y
-          echo "Currently active deployment: ${previouslyActiveDeployment}"
-          az spring-cloud app set-deployment --deployment '$(DeploymentName)' --resource-group '${{parameters.resource_group}}' --service '${{parameters.spring_cloud_name}}' --name '${{parameters.application_name}}' --verbose
-          echo 'New active deployment: d$(Build.BuildId)'
-
+        Action: 'Set Production Deployment'
+        AzureSpringCloud: '${{parameters.spring_cloud_name}}'
+        AppName: '${{parameters.application_name}}'
+        DeploymentName: '$(DeploymentName)'
