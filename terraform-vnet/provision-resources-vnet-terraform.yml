@@ -1,7 +1,5 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+# Provisions an Azure Spring Cloud environment on a virtual network.
+# Note: This pipeline must be run with a Service Connection that has the Owner role on the target resource group.
 
 name: Provision Resources
 
