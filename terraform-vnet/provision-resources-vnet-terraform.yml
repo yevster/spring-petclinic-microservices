@@ -27,11 +27,12 @@ steps:
 - task: TerraformInstaller@0
   inputs:
     terraformVersion: '0.12.3'
-    
+
 - task: TerraformTaskV1@0
   inputs:
     provider: 'azurerm'
     command: 'init'
+    workingDirectory: '$(Build.Repository.LocalPath)/terraform-vnet'
     backendServiceArm: '$(SERVICE_CONNECTION_NAME)'
     backendAzureRmResourceGroupName: '$(REMOTE_BACKEND_RESOURCE_GROUP)'
     backendAzureRmStorageAccountName: '$(REMOTE_BACKEND_STORAGE_ACCOUNT)'
@@ -50,6 +51,7 @@ steps:
 - task: TerraformTaskV1@0
   inputs:
     provider: 'azurerm'
+    workingDirectory: '$(Build.Repository.LocalPath)/terraform-vnet'
     command: 'apply'
     commandOptions: '-auto-approve -var resource_group=$(RESOURCE_GROUP) -var spring_cloud_service=$(SPRING_CLOUD_NAME) -var mysql_server_admin_password=$(MYSQL_PASSWORD)'
     environmentServiceNameAzureRM: '$(SERVICE_CONNECTION_NAME)'
