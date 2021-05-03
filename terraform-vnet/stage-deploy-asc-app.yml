@@ -33,13 +33,16 @@ stages:
       artifact: build
 
     - task: AzureSpringCloud@0
+      continueOnError: true
       inputs:
         azureSubscription: '$(SERVICE_CONNECTION_NAME)'
         Action: 'Delete Staging Deployment'
         AppName: '${{parameters.application_name}}'
         AzureSpringCloud: '${{parameters.spring_cloud_name}}'
+        
 
     - task: AzureSpringCloud@0
+      timeoutInMinutes: 20
       inputs:
         azureSubscription: '$(SERVICE_CONNECTION_NAME)'
         Action: 'Deploy'
