@@ -47,7 +47,7 @@ stages:
         AppName: '${{parameters.application_name}}'
         DeploymentName: '$(DeploymentName)'
         CreateNewDeployment: true
-        Package: 'target/${{parameters.application_name}}*.jar'
+        Package: '$(PIPELINE.WORKSPACE)/build_from_github/build/*${{parameters.application_name}}*.jar'
     
 - stage: move_to_production
   displayName: Move to Production
