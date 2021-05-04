@@ -48,6 +48,7 @@ stages:
         Action: 'Deploy'
         AzureSpringCloud: '${{parameters.spring_cloud_name}}'
         AppName: '${{parameters.application_name}}'
+        UseStagingDeployment: false
         DeploymentName: '$(DeploymentName)'
         CreateNewDeployment: true
         Package: '$(PIPELINE.WORKSPACE)/build_from_github/build/*${{parameters.application_name}}*.jar'
@@ -64,4 +65,5 @@ stages:
         Action: 'Set Production'
         AzureSpringCloud: '${{parameters.spring_cloud_name}}'
         AppName: '${{parameters.application_name}}'
+        UseStagingDeployment: false
         DeploymentName: '$(DeploymentName)'
