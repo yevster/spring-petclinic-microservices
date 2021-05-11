@@ -100,11 +100,11 @@ resource "azurerm_subnet" "service_subnet" {
 }
 
 
-# Make sure the SPID used to provision terraform has privilage to do role assignments. 
+# Make sure Azure Spring Cloud resource provider can get permissions to Virtual network. 
 resource "azurerm_role_assignment" "ra" {
   scope                = azurerm_virtual_network.test.id
   role_definition_name = "Owner"
-  principal_id         = "d2531223-68f9-459e-b225-5592f90d145e"
+  principal_id         = "e8de9221-a19c-4c81-b814-fd37c6caf9d2"
 }
 
 resource "azurerm_spring_cloud_service" "example" {
